@@ -1,10 +1,14 @@
-import { Controller, Get, HttpCode, Param, Post, Query,} from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Post, Query,} from '@nestjs/common';
+import { CreateCatDto } from './create-cat.dto';
 
 @Controller('cats')
 export class CatsController {
   @Post()
   @HttpCode(204)
-  create(): string {
+  async create(@Body() createCatDto: CreateCatDto) {
+    console.log(createCatDto.age);
+    console.log(createCatDto.name);
+    console.log(createCatDto.breed);
     return 'This action adds a new cat';
   }
   
